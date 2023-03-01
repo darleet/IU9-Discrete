@@ -1,0 +1,5 @@
+# Ignore VSCode settings files
+.vscode/
+
+# Ignore GoLand settings files
+*/.idea/
