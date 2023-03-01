@@ -3,3 +3,6 @@
 
 # Ignore GoLand settings files
 */.idea/
+
+# Ignore .mod files
+*.mod
