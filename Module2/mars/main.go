@@ -129,11 +129,10 @@ func main() {
 
 		// Сделаем разницу оптимальной (для меньшей лекс. разницы идем с конца)
 		for i := len(deltaList) - 1; i >= 0; i-- {
-			if abs(diff-2*deltaList[i].delta) < abs(diff) {
+			if abs(diff-2*deltaList[i].delta) < abs(diff) ||
+				(abs(diff-2*deltaList[i].delta) == abs(diff)) &&
+					(len(deltaList[i].grouped) > len(deltaList[i].ungrouped)) {
 				diff -= 2 * deltaList[i].delta
-				deltaList[i].grouped, deltaList[i].ungrouped = deltaList[i].ungrouped, deltaList[i].grouped
-			} else if (abs(diff-2*deltaList[i].delta) == abs(diff)) &&
-				(len(deltaList[i].grouped) > len(deltaList[i].ungrouped)) {
 				deltaList[i].grouped, deltaList[i].ungrouped = deltaList[i].ungrouped, deltaList[i].grouped
 			}
 		}
