@@ -10,3 +10,6 @@
 # Ignore .xml and .iml files
 *.xml
 *.iml
+
+# Ignore .dot files
+*.dot
