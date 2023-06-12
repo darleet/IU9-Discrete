@@ -76,6 +76,7 @@ func readEdge(reader *bufio.Reader) (int, int) {
 	return nodeIndexA, nodeIndexB
 }
 
+// Читает int из Stdin
 func readInt(reader *bufio.Reader) int {
 	input, _ := reader.ReadString('\n')
 	input = strings.Trim(input, "\n")
@@ -83,28 +84,31 @@ func readInt(reader *bufio.Reader) int {
 	return inputInt
 }
 
-func visitNodeMarkComponents(startNodeIndex int, nodeList []*node) {
+// Посещает вершины в компоненте рёберной двусвязности
+func visitComp2Nodes(startNodeIndex int, nodeList []*node) {
 	nodeList[startNodeIndex].inComponent = true
 	for _, currentNodeIndex := range nodeList[startNodeIndex].links {
 		if !nodeList[currentNodeIndex].inComponent &&
 			nodeList[currentNodeIndex].parent != startNodeIndex {
-			visitNodeMarkComponents(currentNodeIndex, nodeList)
+			visitComp2Nodes(currentNodeIndex, nodeList)
 		}
 	}
 }
 
+// Считает мосты в компонентах связности
 func countBridgesInComponent(nodeList []*node, nodeQueue *queue) int {
 	bridges := -1
 	for !nodeQueue.IsEmpty() {
 		startNodeIndex := nodeQueue.Dequeue()
 		if !nodeList[startNodeIndex].inComponent {
-			visitNodeMarkComponents(startNodeIndex, nodeList)
+			visitComp2Nodes(startNodeIndex, nodeList)
 			bridges++
 		}
 	}
 	return bridges
 }
 
+// Посещает вершины и помечает родителей
 func visitNodeMarkParents(startNodeIndex int, nodeList []*node, nodeQueue *queue) {
 	nodeList[startNodeIndex].color = BLACK
 	nodeQueue.Enqueue(startNodeIndex)
@@ -116,6 +120,7 @@ func visitNodeMarkParents(startNodeIndex int, nodeList []*node, nodeQueue *queue
 	}
 }
 
+// Считает мосты в графе
 func calcBridges(nodeList []*node) int {
 	var bridgeCounter int
 	nodeQueue := initQueue(len(nodeList))
