@@ -75,6 +75,10 @@ func parsePolish(reader *bufio.Reader) int {
 			result += subtract(reader, &symbol)
 		case '*':
 			result += multiply(reader, &symbol)
+		default:
+			if symbol >= '0' && symbol <= '9' {
+				return int(symbol - '0')
+			}
 		}
 	}
 	return result
