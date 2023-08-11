@@ -157,9 +157,9 @@ func printGraph(nodeList []*node, maxComponentIndex int, writer *bufio.Writer) {
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	writer := bufio.NewWriter(os.Stdout)
-	defer func(writer *bufio.Writer) {
+	defer func() {
 		_ = writer.Flush()
-	}(writer)
+	}()
 
 	input, _ := reader.ReadString('\n')
 	input = strings.Trim(input, "\n")
