@@ -81,8 +81,7 @@ func readSlice(scanner *bufio.Scanner) []int {
 
 func readInt(scanner *bufio.Scanner) int {
 	scanner.Scan()
-	input := strings.TrimSuffix(scanner.Text(), "\n")
-	x, _ := strconv.Atoi(input)
+	x, _ := strconv.Atoi(scanner.Text())
 	return x
 }
 
