@@ -4,12 +4,15 @@
 # Ignore GoLand settings files
 */*/.idea/
 
-# Ignore .mod files
+# Ignore golang config files
 *.mod
 
 # Ignore .xml and .iml files
 *.xml
 *.iml
 
-# Ignore .dot files
+# Ignore graphs files
 *.dot
+
+# Ignore test files
+*.txt
